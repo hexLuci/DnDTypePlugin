@@ -7,4 +7,6 @@
 
 ## Commands
 * Heal
+    * Heals both health and hunger
 * Showstats
+    * Shows all of the player's stats that are set in the config. Currently not formatted. 
