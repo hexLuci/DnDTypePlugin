@@ -1,1 +1,5 @@
 # DnDTypePlugin
+
+## Commands
+* Heal
+* Showstats
