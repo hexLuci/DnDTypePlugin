@@ -16,7 +16,6 @@ import java.io.IOException;
 public class EntityHitPlayer implements Listener {
 
     private final Main plugin;
-
     //When player hits an entity
     public EntityHitPlayer(Main plugin) {
         this.plugin = plugin;
@@ -27,28 +26,30 @@ public class EntityHitPlayer implements Listener {
     public void onEntityDamagePlayer(final EntityDamageByEntityEvent e) {
         //Checks to see if the person hitting is a player
         if (!(e.getDamager() instanceof Player)) {
-            final Player p = (Player) e.getEntity();
+            if (e.getEntity() instanceof Player) {
+                final Player p = (Player) e.getEntity();
 
-            File file = new File(plugin.getDataFolder(), p.getUniqueId() + ".yml");
-            YamlConfiguration conf = YamlConfiguration.loadConfiguration(file);
+                File file = new File(plugin.getDataFolder(), p.getUniqueId() + ".yml");
+                YamlConfiguration conf = YamlConfiguration.loadConfiguration(file);
 
-            //Try loading the file
-            try {
-                conf.load(file);
-            } catch (IOException | InvalidConfigurationException ex) {
-                ex.printStackTrace();
-            }
+                //Try loading the file
+                try {
+                    conf.load(file);
+                } catch (IOException | InvalidConfigurationException ex) {
+                    ex.printStackTrace();
+                }
 
-            if (e.getOriginalDamage(EntityDamageEvent.DamageModifier.BASE) <= 1) {
-                e.setDamage(e.getDamage());
-            } else {
+                if (e.getOriginalDamage(EntityDamageEvent.DamageModifier.BASE) <= 1) {
+                    e.setDamage(e.getDamage());
+                } else {
 
-                double defence = conf.getDouble("Stats.Defense");
-                double defenceFormula = ((defence + 100) / defence) * 100;
-                final double damage = defenceFormula / (e.getDamage() * 100);
-                e.setDamage(damage);
-                p.sendMessage("" + e.getDamage());
+                    double defence = conf.getDouble("Stats.Defense");
+                    double defenceFormula = ((defence + 100) / defence) * 100;
+                    final double damage = defenceFormula / (e.getDamage() * 100);
+                    e.setDamage(damage);
+                    p.sendMessage("" + e.getDamage());
 
+                }
             }
         }
     }

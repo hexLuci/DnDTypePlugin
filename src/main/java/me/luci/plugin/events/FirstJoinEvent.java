@@ -46,7 +46,7 @@ public class FirstJoinEvent implements Listener {
             c.create();
 
             //Sets paths for the default config
-            c.getConfig().set("Stats.Health", 100.0D);
+            c.getConfig().set("Stats.Constitution", 100.0D);
             c.getConfig().set("Stats.Defense", 50.0D);
             c.getConfig().set("Stats.Strength", 1);
             c.getConfig().set("Stats.Speed", 0.2D); //0.0 to 1.0, 0.2 is default
@@ -68,7 +68,7 @@ public class FirstJoinEvent implements Listener {
 
             //Set player health to max health, but keep hearts
             p.setHealthScaled(true);
-            Objects.requireNonNull(p.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(c.getConfig().getDouble("Stats.Health"));
+            Objects.requireNonNull(p.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(c.getConfig().getDouble("Stats.Constitution"));
 
             //Setting player speed
             float Speed = (float) c.getConfig().getDouble("Stats.Speed");

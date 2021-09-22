@@ -50,7 +50,7 @@ public class PlayerRespawnEvent implements Listener {
         p.setHealthScaled(true);
 
         //Sets the player's base value of health to their health
-        Objects.requireNonNull(p.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(conf.getDouble("Stats.Health"));
+        Objects.requireNonNull(p.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(conf.getDouble("Stats.Constitution"));
 
         //Setting player speed
         float Speed = (float) conf.getDouble("Stats.Speed");
