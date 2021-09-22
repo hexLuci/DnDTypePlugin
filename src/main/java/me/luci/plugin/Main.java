@@ -37,7 +37,7 @@ public class Main extends JavaPlugin implements Listener {
 
         //Register the commands
         Objects.requireNonNull(getCommand("showstats")).setExecutor(new ShowStats(this));
-        Objects.requireNonNull(getCommand("heal")).setExecutor(new Heal(this));
+        Objects.requireNonNull(getCommand("heal")).setExecutor(new Heal());
     }
 
     //On Plugin disable

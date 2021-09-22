@@ -41,7 +41,6 @@ public class PlayerRespawnEvent implements Listener {
         try {
             conf.load(file);
         } catch (IOException | InvalidConfigurationException ex) {
-            // TODO Auto-generated catch block
             ex.printStackTrace();
         }
 

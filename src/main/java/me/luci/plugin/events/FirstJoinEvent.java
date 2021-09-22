@@ -23,11 +23,6 @@ public class FirstJoinEvent implements Listener {
         this.plugin = plugin;
     }
 
-    private static double round (double value, int precision) {
-        int scale = (int) Math.pow(10, precision);
-        return (double) Math.round(value * scale) / scale;
-    }
-
     //When player joins
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
@@ -92,7 +87,7 @@ public class FirstJoinEvent implements Listener {
                     //Displays current player's health on their actionbar
                     int health = (int) p.getHealth();
                     int rounded = (int) Objects.requireNonNull(p.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue();
-                    String message = String.valueOf(health) + "/" + rounded;
+                    String message = health + "/" + rounded;
                     p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.DARK_RED + message + "❤"));
                 }
             }.runTaskTimer(plugin, 5L, 5L);

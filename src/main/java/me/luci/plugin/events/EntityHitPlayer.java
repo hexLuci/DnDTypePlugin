@@ -1,10 +1,8 @@
 package me.luci.plugin.events;
 
-import me.luci.plugin.Config;
 import me.luci.plugin.Main;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,21 +12,14 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import java.io.File;
 import java.io.IOException;
 
+@SuppressWarnings("deprecation")
 public class EntityHitPlayer implements Listener {
 
-    private Main plugin;
-    public Config c;
-    long show = 3L;
-    long delay = 3L;
+    private final Main plugin;
 
     //When player hits an entity
     public EntityHitPlayer(Main plugin) {
         this.plugin = plugin;
-    }
-
-    private static double round (double value, int precision) {
-        int scale = (int) Math.pow(10, precision);
-        return (double) Math.round(value * scale) / scale;
     }
 
     //Check the player damage event to see if fired
@@ -36,17 +27,15 @@ public class EntityHitPlayer implements Listener {
     public void onEntityDamagePlayer(final EntityDamageByEntityEvent e) {
         //Checks to see if the person hitting is a player
         if (!(e.getDamager() instanceof Player)) {
-            Entity entity = e.getDamager();
             final Player p = (Player) e.getEntity();
 
-            File file = new File(plugin.getDataFolder(), p.getUniqueId().toString() + ".yml");
+            File file = new File(plugin.getDataFolder(), p.getUniqueId() + ".yml");
             YamlConfiguration conf = YamlConfiguration.loadConfiguration(file);
 
             //Try loading the file
             try {
                 conf.load(file);
             } catch (IOException | InvalidConfigurationException ex) {
-                // TODO Auto-generated catch block
                 ex.printStackTrace();
             }
 

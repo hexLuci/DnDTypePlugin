@@ -1,17 +1,18 @@
 package me.luci.plugin.commands.stats;
 
-import me.luci.plugin.Main;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 public class Heal implements CommandExecutor {
 
     //private Main plugin;
 
-    public Heal(Main plugin) {
+    public Heal() {
         //this.plugin = plugin;
 
     }
@@ -24,7 +25,7 @@ public class Heal implements CommandExecutor {
                 Player p = (Player) sender;
 
                 //Heal the player that used the command
-                p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
+                p.setHealth(Objects.requireNonNull(p.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue());
                 p.setFoodLevel(20);
 
             }

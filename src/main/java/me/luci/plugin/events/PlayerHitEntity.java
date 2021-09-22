@@ -1,6 +1,5 @@
 package me.luci.plugin.events;
 
-import me.luci.plugin.Config;
 import me.luci.plugin.Main;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -14,8 +13,7 @@ import java.io.IOException;
 
 public class PlayerHitEntity implements Listener {
 
-    private Main plugin;
-    public Config c;
+    private final Main plugin;
 
     //When player hits an entity
     public PlayerHitEntity(Main plugin) {
@@ -30,14 +28,13 @@ public class PlayerHitEntity implements Listener {
             Player p = (Player) e.getDamager();
 
             //Sets the file and conf to be the config for the player's YAML
-            File file = new File(plugin.getDataFolder(), p.getUniqueId().toString() + ".yml");
+            File file = new File(plugin.getDataFolder(), p.getUniqueId() + ".yml");
             YamlConfiguration conf = YamlConfiguration.loadConfiguration(file);
 
             //Try loading the file
             try {
                 conf.load(file);
             } catch (IOException | InvalidConfigurationException ex) {
-                // TODO Auto-generated catch block
                 ex.printStackTrace();
             }
 
