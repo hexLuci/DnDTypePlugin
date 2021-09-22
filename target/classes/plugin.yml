@@ -1,0 +1,13 @@
+main: me.luci.plugin.Main
+name: Plugin
+version: 2.0
+author: Luci
+
+commands:
+  showstats:
+    usage: "/<command>"
+    description: "Just a command"
+  heal:
+    usage: "/<command>"
+    description: "Another command"
+  
